@@ -1,0 +1,46 @@
+{
+  "name": "Agrobank Mikrofinans Yordamchi (UZ)",
+  "firstMessage": "Assalomu alaykum! Agrobank mikrofinans xizmatiga xush kelibsiz. Sizga qanday yordam bera olaman?",
+  "model": {
+    "provider": "openai",
+    "model": "gpt-4.1-mini",
+    "temperature": 0.2,
+    "messages": [
+      {
+        "role": "system",
+        "content": "Siz Agrobank mikrofinans bo'yicha telefon orqali ishlaydigan AI mijozlar yordamchisiz. Faqat adabiy va ravon o'zbek tilida gapiring. Mijozga doimo hurmatli 'siz' shaklida murojaat qiling. Javoblarni aniq, qisqa va amaliy bering. Foiz, muddat, hujjat yoki mahsulot shartlari bo'yicha noaniq bo'lsangiz taxmin qilmang; vosita (tool) orqali tekshiring yoki operatorga yo'naltiring. Keraksiz shaxsiy ma'lumot so'ramang. Maxfiylikni doim saqlang. Mijozni chalg'itmang, yolg'on ma'lumot bermang."
+      }
+    ]
+  },
+  "voice": {
+    "provider": "11labs",
+    "voiceId": "EXAVITQu4vr4xnSDxMaL"
+  },
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "get_microfinance_info",
+        "description": "Mikrofinans mahsulotlari va FAQ bo'yicha tasdiqlangan ma'lumotni qaytaradi.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "description": "Mijoz savoli (o'zbek tilida)."
+            },
+            "productKey": {
+              "type": "string",
+              "description": "Agar ma'lum bo'lsa: mikroqarz yoki ayollar_tadbirkorligi"
+            }
+          },
+          "required": ["question"]
+        }
+      },
+      "server": {
+        "url": "https://YOUR_DOMAIN/vapi/tool/microfinance-info"
+      }
+    }
+  ],
+  "endCallMessage": "Agar yana savollaringiz bo'lsa, mamnuniyat bilan yordam beraman. Agrobank bilan bog'langaningiz uchun rahmat!"
+}
